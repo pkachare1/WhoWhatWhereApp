@@ -5,8 +5,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
     $stateProvider
 
-    // HOME STATES AND NESTED VIEWS ========================================
-
         .state('data', {
             url: '/data',
             templateUrl: 'views/displayData.html',

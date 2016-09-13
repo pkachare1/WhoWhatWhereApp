@@ -1,6 +1,5 @@
 var express = require('express'),
     Yelp = require('yelp'),
-    Dodge = require("dodge"),
     app = express();
 
 app.use(express.static(__dirname + '/public'));
@@ -24,8 +23,7 @@ function getData(options, callBack) {
 }
 
 app.get('/search', function (request, response) {
-    var paramater = request.query;
-    getData(paramater, function (err, data) {
+    getData(request.query, function (err, data) {
         if (err) {
             response.send({error: true});
         } else {
@@ -35,4 +33,4 @@ app.get('/search', function (request, response) {
 });
 
 app.listen(3131);
-console.log('Running Server......3131');
+console.log('server is running......3131');

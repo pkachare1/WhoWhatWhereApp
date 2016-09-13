@@ -1,5 +1,7 @@
 app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
 
+    $scope.searchMenuItems=["Food","Fun","NightLife","Coffee"];
+
     NgMap.getMap().then(function (map) {
         $scope.map = map;
     });
@@ -12,7 +14,7 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
     var name, image, address, phoneNo,rating;
     function requestFilterData(requestData) {
         if (!_.isUndefined(requestData)) {
-            var filterArray = [];
+            var responseData = [];
             for (var i = 0; i < requestData.length; i++) {
                 if (!_.isUndefined(requestData[i].name)) {
                     name = requestData[i].name;
@@ -41,7 +43,7 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
                     phoneNo = 'Not available';
                 }
 
-                filterArray[i] = {
+                responseData[i] = {
                     image: image,
                     name: name,
                     phoneNo: phoneNo,
@@ -49,7 +51,7 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
                     rating:rating
                 };
             }
-            return filterArray;
+            return responseData;
         }
     }
 
@@ -80,7 +82,7 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
 
     $scope.menuClick = function (event) {
         var clickId = event.target.id;
-        var itemSearch = clickId.split('#')[1];
+        var itemSearch = clickId;
         var citySearch = 'california';
         searchData(citySearch, itemSearch);
     };

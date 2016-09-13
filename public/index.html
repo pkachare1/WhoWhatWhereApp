@@ -2,8 +2,7 @@
 <html ng-app="WhoWhatWhere">
 <head>
     <meta charset="utf-8">
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+
     <title>Search Location</title>
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
@@ -28,24 +27,23 @@
         </div>
         <div class="col-md-6">
             <form class="navbar-form navbar-right" role="search">
+                <select class="form-control" id="searchItem" ng-model="getItems"
+                        ng-options="x for x in searchMenuItems">
+                    <option value="">Select Items</option>
+                </select>
                 <div class="form-group">
-                    <input type="text" required
-                           class="form-control" ng-model="getItems" placeholder="Search by Item"/>
-                </div>
-                <div class="form-group">
-                    <input type="text" required
-                           class="form-control" ng-model="getCity" placeholder="Search by City"/>
+                    <input type="text" required class="form-control" ng-model="getCity" placeholder="Search by City"/>
                 </div>
                 <button class="button" value="Search" ng-click="clickItem($event)">Search</button>
             </form>
         </div>
         <div class="col-md-9 col-md-offset-3 centered-pills">
             <ul class="nav nav-pills">
-                <li><a id="#home" ui-sref="home" ng-click="menuClick($event)">Home</a></li>
-                <li><a id="#food" ui-sref="data" ng-click="menuClick($event)">Food</a></li>
-                <li><a id="#fun" ui-sref="data" ng-click="menuClick($event)">Fun</a></li>
-                <li><a id="#nightLife" ui-sref="data" ng-click="menuClick($event)">NightLife</a></li>
-                <li><a id="#Coffee" ui-sref="data" ng-click="menuClick($event)">Coffee</a></li>
+                <li><a id="home" ui-sref="home" ng-click="menuClick($event)">Home</a></li>
+                <li><a id="food" ui-sref="data" ng-click="menuClick($event)">Food</a></li>
+                <li><a id="fun" ui-sref="data" ng-click="menuClick($event)">Fun</a></li>
+                <li><a id="nightLife" ui-sref="data" ng-click="menuClick($event)">NightLife</a></li>
+                <li><a id="Coffee" ui-sref="data" ng-click="menuClick($event)">Coffee</a></li>
             </ul>
         </div>
     </header>

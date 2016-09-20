@@ -10,7 +10,7 @@
                     <div class="name"><a target="_blank" href="{{list.url}}">{{list.name}}</a></div>
                     <div class="address" ng-repeat="add in list.address track by $index">{{add}}</div>
                     <div class="phoneNo">{{list.phoneNo}}</div>
-                    <div class="ratingScale">{{list.rating}}</div>
+                    <img ng-src="{{list.ratingImage}}" class="ratingImg"/>
                 </div>
             </div>
         </div>
@@ -25,7 +25,8 @@
                     </div>
                 </info-window>
                 <marker ng-repeat="showMarker in responseData" position="[{{showMarker.lat}},{{showMarker.lan}}]"
-                        title="{{showMarker.name}}" icon="{{icon}}" on-click="searchCity(event,showMarker)">
+                        title="{{showMarker.name}}" icon="{{icon}}" on-click="searchCity(event,showMarker)"
+                        on-mouseover="searchCity(event,showMarker)">
                 </marker>
             </ng-map>
         </div>

@@ -1,6 +1,6 @@
-app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
+app.controller("viewDataController", function ($http, $scope, NgMap, $location) {
 
-    $scope.searchMenuItems=["Food","Fun","NightLife","Coffee"];
+    $scope.searchMenuItems = ["Food", "Fun", "NightLife", "Coffee"];
 
     NgMap.getMap().then(function (map) {
         $scope.map = map;
@@ -11,7 +11,8 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
         $scope.map.showInfoWindow('displayInfo', this);
     };
 
-    var name, image, address, phoneNo,rating;
+    var name, image, address, phoneNo, ratingImage;
+
     function requestFilterData(requestData) {
         if (!_.isUndefined(requestData)) {
             var responseData = [];
@@ -21,7 +22,6 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
                 } else {
                     name = 'Not available';
                 }
-
                 if (!_.isUndefined(requestData[i].location.display_address)) {
                     address = requestData[i].location.display_address;
                 } else {
@@ -32,23 +32,22 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
                 } else {
                     image = 'images/noIcon.png';
                 }
-                if (!_.isUndefined(requestData[i].rating)) {
-                    rating = requestData[i].rating;
-                } else {
-                    rating = 'Not available';
-                }
                 if (!_.isUndefined(requestData[i].display_phone)) {
                     phoneNo = requestData[i].display_phone;
                 } else {
                     phoneNo = 'Not available';
                 }
-
+                if (!_.isUndefined(requestData[i].rating_img_url)) {
+                    ratingImage = requestData[i].rating_img_url;
+                } else {
+                    ratingImage = 'Not available';
+                }
                 responseData[i] = {
                     image: image,
                     name: name,
                     phoneNo: phoneNo,
                     address: address,
-                    rating:rating
+                    ratingImage: ratingImage
                 };
             }
             return responseData;
@@ -67,12 +66,12 @@ app.controller("viewDataController", function ($http, $scope, NgMap,$location) {
                 $scope.responseData.push({
                     name: filterData[i].name,
                     address: filterData[i].address,
-                    rating:filterData[i].rating,
                     image: filterData[i].image,
                     phoneNo: filterData[i].phoneNo,
                     lat: responseData[i].location.coordinate.latitude,
                     lan: responseData[i].location.coordinate.longitude,
-                    url: responseData[i].mobile_url
+                    url: responseData[i].mobile_url,
+                    ratingImage: filterData[i].ratingImage
                 });
             }
         }, function errorCallback(response) {
